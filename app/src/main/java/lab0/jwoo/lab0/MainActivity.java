@@ -6,20 +6,33 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
+
+    boolean clicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final TextView textView = (TextView) findViewById(R.id.my_textbox);
+
         Button myButton = (Button) findViewById(R.id.my_button);
+
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (!clicked) {
+                    textView.setText(getString(R.string.different_string));
+                    clicked = true;
+                }
+                else {
+                    textView.setText(getString(R.string.different_string2));
+                    clicked = false;
+                }
             }
         });
     }
